@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Sensei</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Bienvenue sur Anime Sensei</h1>
+    <input type="text" id="recherche" placeholder="Cherche ton animé...">
+    <div id="anime-list"></div>
+
+    <script>
+        const animes = [
+            {
+                "titre": "Naruto",
+                "image": "https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg",
+                "description": "Un jeune ninja rêve de devenir Hokage.",
+                "lien": "https://anime-sama.fr/catalogue/naruto"
+            },
+            {
+                "titre": "One Piece",
+                "image": "https://resizing.flixster.com/i0orGrLifnc2jW75__eIn0jy1B8=/620x336/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p186423_i_h10_ad.jpg",
+                "description": "Luffy part à la recherche du One Piece.",
+                "lien": "https://anime-sama.fr/catalogue/one-piece"
+            },
+            {
+                "titre": "Attack on Titan",
+                "image": "https://www.francetvinfo.fr/pictures/zH4w6Atm0UzCz8MVyjTlzerGKeE/1200x1200/2021/02/19/phpmhompv.jpg",
+                "description": "L'humanité lutte contre des titans géants.",
+                "lien": "https://anime-sama.fr/catalogue/shingeki-no-kyojin"
+            },
+            {
+                "titre": "Demon Slayer",
+                "image": "https://m.media-amazon.com/images/M/MV5BMWU1OGEwNmQtNGM3MS00YTYyLThmYmMtN2FjYzQzNzNmNTE0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+                "description": "Tanjiro devient un pourfendeur de démons.",
+                "lien": "https://anime-sama.fr/catalogue/kimetsu-no-yaiba"
+            },
+            {
+                "titre": "My Hero Academia",
+                "image": "https://cdn.statically.io/gh/Anime-Sama/IMG/img/contenu/my-hero-academia.jpg",                   
+                "discription": "Des élèves apprennent à devenir des super-héros.",
+                "lien": "https://anime-sama.fr/catalogue/boku-no-hero-academia" 
+            },
+            {
+                "titre": "Black Clover",
+                "image": "https://cdn.statically.io/gh/Anime-Sama/IMG/img/contenu/black-clover.jpg",
+                "description": "Asta veut devenir le sorcier empereur.",
+                "lien": "https://anime-sama.fr/catalogue/black-clover"
+            },
+            {
+                "titre": "Tokyo Revengers",
+                "image": "https://cdn.statically.io/gh/Anime-Sama/IMG/img/contenu/tokyo-revengers.jpg",
+                "description": "Un jeune homme remonte le temps pour sauver son amie.",
+                "lien": "https://anime-sama.fr/catalogue/tokyo-revengers"
+            },
+            {
+                "titre": "Jujutsu Kaisen",
+                "image": "https://cdn.statically.io/gh/Anime-Sama/IMG/img/contenu/jujutsu-kaisen.jpg",
+                "description": "Un lycéen ingère un doigt maudit pour sauver ses amis.",
+                "lien": "https://anime-sama.fr/catalogue/jujutsu-kaisen",
+                "bande-annonce": "https://www.youtube.com/watch?v=1X5V8Z3M2jw"
+            },
+            {
+                "titre": "Dragon Ball Z",
+                "image": "https://cdn.statically.io/gh/Anime-Sama/IMG/img/contenu/dragon-ball.jpg",
+                "description": "Goku protège la Terre des menaces extraterrestres.",
+                "lien": "https://anime-sama.fr/catalogue/dragon-ball-z"
+            },
+            {
+                "titre": "Death Note",
+                "image": "https://cdn.statically.io/gh/Anime-Sama/IMG/img/contenu/death-note.jpg",
+                "description": "Un lycéen trouve un carnet qui tue les gens dont il écrit le nom.",
+                "lien": "https://anime-sama.fr/catalogue/death-note"
+            },
+            {
+                "titre": "Hunter x Hunter",
+                "image": "https://cdn.statically.io/gh/Anime-Sama/IMG/img/contenu/hunter-x-hunter.jpg",
+                "description": "Gon veut retrouver son père en devenant hunter.",
+                "lien": "https://anime-sama.fr/catalogue/hunter-x-hunter"
+            }
+        ];
+
+        function afficherAnimes() {
+            const recherche = document.getElementById('recherche').value.toLowerCase();
+            const animeList = document.getElementById('anime-list');
+            animeList.innerHTML = '';
+
+            animes.forEach(anime => {
+                if (anime.titre.toLowerCase().includes(recherche)) {
+                    animeList.innerHTML += `
+                        <div class="anime-card">
+                            <img src="${anime.image}" alt="${anime.titre}">
+                            <h2>${anime.titre}</h2>
+                            <p>${anime.description}</p>
+                            <a href="${anime.lien}" target="_blank">Regarder</a>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        document.getElementById('recherche').addEventListener('input', afficherAnimes);
+        afficherAnimes();
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #recherche {
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        #anime-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .anime-card {
+            background-color: #333;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            width: 200px;
+        }
+
+        .anime-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .anime-card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</body>
+</html>
